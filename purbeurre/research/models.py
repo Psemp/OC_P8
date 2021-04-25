@@ -22,6 +22,7 @@ class Account(models.Model):
 
 
 class Product(models.Model):
+    barcode = models.IntegerField(primary_key=True, unique=True)
     name = models.CharField(max_length=200, unique=False)
     brand = models.CharField(max_length=200, unique=False)
     url = models.URLField(unique=True)
