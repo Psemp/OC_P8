@@ -48,8 +48,7 @@ class Command(BaseCommand):
                             p = Product.objects.get(barcode=product['_id'])
                             p.product_categories.add(category.pk)
                             p.save()
-                        except Exception as e:
-                            print(e)
+                        except:
                             print("So, Theres an error, I know it, you know it, lets look the other way")
                     elif product['_id'] not in barcode_list and sections_in_prod(product) and bc_test(product['_id']) and length_management(product['product_name']):
                         try:
@@ -68,8 +67,9 @@ class Command(BaseCommand):
                             if 'fat_100g' in product['nutriments']:
                                 p.fats = product['nutriments']['fat_100g']
 
-                            p.product_categories.add(category.pk)
                             barcode_list.append(product['_id'])
+                            p.save()
+                            p.product_categories.add(category.pk)
                             p.save()
                         except ValueError:
                             print("Data incompatible, skipping -- Value Error")

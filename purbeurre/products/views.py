@@ -9,7 +9,3 @@ def detail(request, product_id):
     nutricon = f"https://static.openfoodfacts.org/images/attributes/nutriscore-{p.nutriscore}.svg"
     context = {"product": p, "nutricon": nutricon}
     return render(request, 'products/detail.html', context)
-
-
-def test_detail(request):
-    return render(request, 'products/detail.html')
