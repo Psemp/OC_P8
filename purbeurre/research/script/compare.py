@@ -5,14 +5,11 @@ def compare_products(user_product, product_list):
     """returns a list of objects products with better nutriscore than original"""
     healthier_products = []
 
-    def get_nutriscore(product):
-        return product.nutriscore
-
     for product in product_list:
         if product.nutriscore < user_product.nutriscore:
             healthier_products.append(product)
 
-    return healthier_products.sort(key=get_nutriscore)
+    return healthier_products.sort(key=lambda x: x.nutriscore)  # reverse = True)
 
 
 def get_similar_prod(cat_set):
