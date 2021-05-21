@@ -1,0 +1,14 @@
+{% extends 'research/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <header class="page-section product-header" style="background-image: url({{ user.profile.picture.url }}) !important; background-repeat: no-repeat;background-position: center; background-color: black; margin-top: 3rem !important ;">
+    </header>
+    <section class="page-section">
+        <div class="container">
+            <div class="col text-center">
+                <h2 class="text-black mt-0">{{ user.username }}</h2>
+                <h4 class="text-secondary text-center">{{ user.email }}</h4>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -15,14 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 from research import views as store_views
+from account import views as ac_views
 
 #  from products import views as product_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', ac_views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name='logout'),
+    path('profile/', ac_views.profile, name='profile'),
     path('', store_views.index, name='index'),
-    path('home/', store_views.index, name='index'),
+    path('home/', store_views.index, name='index'),  # REPETITIVE
     path('detail/', include('products.urls')),
+    path('compare/', include('research.urls')),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

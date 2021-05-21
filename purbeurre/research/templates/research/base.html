@@ -35,15 +35,27 @@
                                 <input id="menu-form" class="nav-item" type="text" placeholder="Produit">
                             </form>
                         </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="http://google.com">Mon Compte</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="http://google.com">Mes Favoris</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="http://google.com">Deconnexion</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'profile' %}">Mon Compte</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">Deconnexion</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login' %}">Connexion</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'register' %}">S'enregister</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
         <!--Block-->
-
+        {% if messages %}
+        <section class="page-section">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </section>
+        {% endif %}
         {% block content %}
         {% endblock %}
 
