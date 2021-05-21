@@ -60,7 +60,10 @@
             {% endif %}
             {% if user.is_authenticated %}
             <div class="row justify-content-center">
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{product.url}}" target="_blank">Ajouter ce produit à mes favoris</a>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="submit" value="Submit">
+                </form>
             </div>
             <hr class="divider my-4">
             {% else %}

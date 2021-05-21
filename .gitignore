@@ -5,3 +5,5 @@
 *.pyc
 purbeurre/account/migrations/0001_initial.py
 purbeurre/research/migrations/0001_initial.py
+purbeurre/products/__pycache__/urls.cpython-39.pyc
+purbeurre/products/__pycache__/views.cpython-39.pyc
