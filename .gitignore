@@ -7,3 +7,7 @@ purbeurre/account/migrations/0001_initial.py
 purbeurre/research/migrations/0001_initial.py
 purbeurre/products/__pycache__/urls.cpython-39.pyc
 purbeurre/products/__pycache__/views.cpython-39.pyc
+purbeurre/account/migrations/0002_profile_favorite.py
+purbeurre/research/migrations/__pycache__/0001_initial.cpython-38.pyc
+purbeurre/research/migrations/0002_remove_product_favorites.py
+purbeurre/research/migrations/__pycache__/0001_initial.cpython-38.pyc

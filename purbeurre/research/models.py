@@ -21,7 +21,6 @@ class Product(models.Model):
     url = models.URLField(unique=True)
     picture_url = models.URLField(unique=True)
     product_categories = models.ManyToManyField(Category, related_name='product_categories', blank=True)
-    favorites = models.ManyToManyField(User, related_name='favorites', blank=True)
     nutriscore = models.CharField(max_length=3)
     stores = models.CharField(max_length=1000, blank=True, unique=False)
 
