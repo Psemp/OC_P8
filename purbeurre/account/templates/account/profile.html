@@ -10,5 +10,15 @@
                 <h4 class="text-secondary text-center">{{ user.email }}</h4>
             </div>
         </div>
+        <hr class="divider my-4">
+        <div class="container">
+            <div class="col text-center">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Mes Favoris</button>
+                <div id="demo" class="collapse">
+                    <hr class="divider my-4">
+                    {% include 'research/list.html' %}
+                </div>
+            </div>
+          </div>          
     </section>
 {% endblock content %}

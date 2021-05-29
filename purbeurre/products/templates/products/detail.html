@@ -59,13 +59,23 @@
                 <hr class="divider my-4">
             {% endif %}
             {% if user.is_authenticated %}
-            <div class="row justify-content-center">
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-            <hr class="divider my-4">
+                {% if display_fav == 1 %}
+                    <div class="row justify-content-center">
+                        <form method="POST" action="#">
+                            {% csrf_token %}
+                            <input class="btn btn-primary" type="submit" value="Ajouter aux favoris">
+                    </form>
+                    </div>
+                <hr class="divider my-4">
+                {% else %}
+                    <div class="row justify-content-center">
+                        <form>
+                            {% csrf_token %}
+                            <input disabled="True" class="btn btn-primary" value="Déjà dans Favoris!">
+                    </form>
+                    </div>
+                    <hr class="divider my-4">
+                {% endif %}
             {% else %}
             <div class="row justify-content-center">
                 <a class="btn btn-light btn-xl js-scroll-trigger" href="{% url 'login' %}" target="_blank">Pour sauvegarder ce produit, veuillez vous connecter</a>
@@ -73,6 +83,10 @@
             <hr class="divider my-4">
             {% endif %}
         </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center"><a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'comparison' product_id=product.barcode %}">Trouver un produit plus sain !</a></div>
+        </div>
+        <hr class="divider my-4">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center"><a class="btn btn-primary btn-xl js-scroll-trigger" href="{{product.url}}" target="_blank">Voir la fiche d'Open food facts pour {{product.name}}</a></div>
         </div>

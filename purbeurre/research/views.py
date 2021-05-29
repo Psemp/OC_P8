@@ -14,6 +14,30 @@ def compare(request, product_id):
     user_product = get_object_or_404(Product, pk=product_id)
     cat_set = get_product_categories(user_product)
     similar_products = get_similar_prod(cat_set)
-    better_products = compare_products(user_product, similar_products)
-    context = {"better_products": better_products}
+    products = compare_products(user_product, similar_products)
+    title = f"Produits plus sain que {user_product.name}"
+    context = {
+        "products": products,
+        "title": title
+    }
+
     return render(request, 'research/compare.html', context)
+
+
+def search(request):
+    query = request.GET.get('query')
+    if not query:
+        products = -1
+    else:
+        products = Product.objects.filter(name__icontains=query)
+    if not products.exists():
+        products = Product.objects.filter(brand__icontains=query)
+
+    title = f"Produits correspondants à {query}"
+
+    context = {
+        'products': products,
+        'title': title
+    }
+
+    return render(request, 'research/search.html', context)

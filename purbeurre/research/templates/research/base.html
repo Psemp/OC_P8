@@ -31,8 +31,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item">
-                            <form>
-                                <input id="menu-form" class="nav-item" type="text" placeholder="Produit">
+                            <form action="{% url 'search' %}" method="get" accept-charset="utf-8">
+                                <input id="searchForm" name="query" placeholder="Produit">
                             </form>
                         </li>
                         {% if user.is_authenticated %}

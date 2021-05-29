@@ -1,16 +1,8 @@
 {% extends 'research/base.html' %}
 {% block content %}
 <section class="page-section">
-    <div class="container">
-        <div class="row justify-content-left">
-            <div class="col-md-8 text-left">
-                <h3 class="text-left"><strong><u>List better products</u></strong></h3>
-                <ul class="list-inlines">
-                    {% for product in better_products %}
-                    <li>{{ product.name }} - {{ product.barcode }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
+    <h3 class="col-md-12 text-center">{{ title }}</h3>
+    <hr class="divider my-4">
+    {% include 'research/list.html' %}
+</section>
 {% endblock content %}

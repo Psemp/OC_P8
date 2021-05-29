@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from research import views as store_views
+from research import views as research_views
 from account import views as ac_views
 
 #  from products import views as product_views
@@ -29,10 +29,10 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name='logout'),
     path('profile/', ac_views.profile, name='profile'),
-    path('', store_views.index, name='index'),
-    path('home/', store_views.index, name='index'),  # REPETITIVE
+    path('', research_views.index, name='index'),
     path('detail/', include('products.urls')),
     path('compare/', include('research.urls')),
+    path('search/', research_views.search, name='search'),
 ]
 
 
