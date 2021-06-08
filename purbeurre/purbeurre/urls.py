@@ -33,8 +33,17 @@ urlpatterns = [
     path('detail/', include('products.urls')),
     path('compare/', include('research.urls')),
     path('search/', research_views.search, name='search'),
+    path('mentions_legales/', research_views.legal, name='legal'),
 ]
 
+
+handler404 = research_views.error_404
+
+handler500 = research_views.error_500
+
+handler403 = research_views.error_403
+
+handler400 = research_views.error_400
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

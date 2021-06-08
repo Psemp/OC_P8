@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileUpdateForm
 from .models import Profile
 
 # Create your views here.
@@ -25,7 +26,24 @@ def profile(request):
     user_id = request.user.pk
     user_profile = Profile.objects.get(pk=user_id)
     products = user_profile.favorite.all()
+
+    if request.method == 'POST':
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if p_form.is_valid:
+            try :
+                p_form.save()
+                messages.success(request, 'Votre photo a été mise à jour !')
+                return redirect('profile')
+            except ValueError:
+                messages.error(request, 'Veuillez mettre en ligne une image')
+                return redirect('profile')
+
+    else:
+        p_form = ProfileUpdateForm()
+
     context = {
-        "products": products
+        "products": products,
+        "p_form": p_form
     }
     return render(request, 'account/profile.html', context)

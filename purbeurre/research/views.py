@@ -41,3 +41,27 @@ def search(request):
     }
 
     return render(request, 'research/search.html', context)
+
+
+def legal(request):
+    return render(request, 'research/mentions_legales.html')
+
+
+def error_404(request, exception):
+    context = {}
+    return render(request, 'research/404.html', context)
+
+
+def error_500(request):
+    context = {}
+    return render(request, 'research/500.html', context)
+
+
+def error_403(request, exception):
+    context = {}
+    return render(request, 'research/403.html', context)
+
+
+def error_400(request, exception):
+    context = {}
+    return render(request, 'research/400.html', context)
