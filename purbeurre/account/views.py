@@ -23,15 +23,15 @@ def register(request):
 
 @login_required
 def profile(request):
-    user_id = request.user.pk
-    user_profile = Profile.objects.get(pk=user_id)
+    user_pk = request.user.pk
+    user_profile = Profile.objects.get(user_id=user_pk)
     products = user_profile.favorite.all()
 
     if request.method == 'POST':
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
         if p_form.is_valid:
-            try :
+            try:
                 p_form.save()
                 messages.success(request, 'Votre photo a été mise à jour !')
                 return redirect('profile')

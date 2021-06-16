@@ -14,23 +14,22 @@ class ProductView(TemplateView):
         product_id = kwargs['product_id']
 
         if self.request.user.is_authenticated:
-            user_id = self.request.user.id
-            user_profile = Profile.objects.get(pk=user_id)
+            user_pk = self.request.user.id
+            user_profile = Profile.objects.get(user_id=user_pk)
             favs = user_profile.favorite.all()
             for fav in favs:
                 if product_id == fav.barcode:
                     display_fav = 0
 
         p = get_object_or_404(Product, pk=product_id)
-        nutricon = f"https://static.openfoodfacts.org/images/attributes/nutriscore-{p.nutriscore}.svg"
         context = super().get_context_data(**kwargs)
-        context = {"product": p, "nutricon": nutricon, "display_fav": display_fav}
+        context = {"product": p, "display_fav": display_fav}
         return context
 
     def post(self, request, *args, **kwargs):
         product_id = kwargs['product_id']
-        user_id = request.user.id
-        user_profile = get_object_or_404(Profile, pk=user_id)
+        user_pk = request.user.id
+        user_profile = get_object_or_404(Profile, user_id=user_pk)
         user_profile.favorite.add(product_id)
         user_profile.save()
         return self.get(request, *args, **kwargs)

@@ -36,14 +36,14 @@ urlpatterns = [
     path('mentions_legales/', research_views.legal, name='legal'),
 ]
 
+if settings.DEBUG:  # FOR TEST PURPOSE, REMOVE FOR PROPER ERROR HANDLING AND DEPLOYMENT
+    handler404 = research_views.error_404
 
-handler404 = research_views.error_404
+    handler500 = research_views.error_500
 
-handler500 = research_views.error_500
+    handler403 = research_views.error_403
 
-handler403 = research_views.error_403
-
-handler400 = research_views.error_400
+    handler400 = research_views.error_400
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
