@@ -19,3 +19,4 @@ class Command(BaseCommand):
                              url=category['url'], amount=category['products'])
                 c.save()
         print("done")
+        return

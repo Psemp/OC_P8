@@ -31,7 +31,7 @@ class Command(BaseCommand):
         def length_management(string):
             return len(string) < 199
 
-        print('grab a drink, you re gonna be here a while')
+        print('This will take a while')
         for category in cat_obj_list:
             page_api = 1
 
@@ -49,7 +49,7 @@ class Command(BaseCommand):
                             p.product_categories.add(category.pk)
                             p.save()
                         except:
-                            print("So, Theres an error, I know it, you know it, lets look the other way")
+                            print("Unknown error, Skipping product")
                     elif product['_id'] not in barcode_list and sections_in_prod(product) and bc_test(product['_id']) and length_management(product['product_name']):
                         try:
                             p = Product(barcode=product['_id'], name=product['product_name'], url=product['url'],
@@ -77,3 +77,4 @@ class Command(BaseCommand):
                             print("Data incompatible, skipping -- Data Error, name too long")
                     page_api += 1
         print('done')
+        return
