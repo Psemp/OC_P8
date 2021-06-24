@@ -22,7 +22,7 @@ Le site propose aux utilisateurs de créer un compte pour accéder a des fonctio
   4. Effectuer les migrations : Dans le dossier purbeurre (ou se trouve manage.py), effectuer : `python manage.py makemigrations` `puis python manage.py migrate`
   5. Une fois les migrations effectuées, créer un superuser avec `python manage.py createsuperuser`
   6. Récupérer les données OpenFoodFacts : `python manage.py get_categories` puis `python manage.py get_products` . Au besoin, les tables de produits et catégories peuvent être purgées avec la commande `python manage.py purge_db`
-  7. Lancer le serveur local avec python manage.py runserver, effectuer les tests avec `python manage.py test` (Selenium, présent dans les requirements, est requis pour les tests)
+  7. Lancer le serveur local avec `python manage.py runserver`, effectuer les tests avec `python manage.py test` (Selenium, présent dans les requirements, est requis pour les tests)
 
   
 
