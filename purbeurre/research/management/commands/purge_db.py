@@ -16,3 +16,4 @@ class Command(BaseCommand):
         for prod in prodset:
             prod.delete()
         print('done')
+        return
